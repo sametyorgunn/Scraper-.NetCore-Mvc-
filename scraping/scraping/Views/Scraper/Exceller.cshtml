@@ -1,0 +1,28 @@
+﻿@using scraping.Models;
+@model List<Excel>
+@{
+    ViewData["Title"] = "Exceller";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Exceller</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Adi</th>
+            <th scope="col">Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var i in Model)
+        {
+        <tr>
+            <th scope="row">1</th>
+            <td>@i.Adi</td>
+            <td><a href="~/Excels/@(i.Adi).xlsx">indir</a></td>
+        </tr>
+        }
+    </tbody>
+</table>
+

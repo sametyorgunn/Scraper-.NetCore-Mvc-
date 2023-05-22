@@ -1,0 +1,114 @@
+﻿@using scraping.Models
+@model List<Urun>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model == null)
+{
+    <form>
+        <div class="form-group col-3">
+            <label>site url</label>
+            <input type="text" name="url" placeholder="Site Urlsi giriniz" class="form-control">
+        </div>
+        <div class="form-group col-3">
+            <label>Ürün Başlık xpath</label>
+            <input type="text" name="Titleway" value="//a[@@class='cd chp']" placeholder="Ürün Başlık Xpathini giriniz" class="form-control">
+        </div>
+        <div class="form-group col-3">
+            <label>fiyat xpath</label>
+            <input type="text" name="fiyatway" value="//del/span[@@class='money']" placeholder="Ürün Fiyat Xpathini giriniz" class="form-control">
+        </div>
+        <div class="form-group col-3">
+            <label>Resim xpath</label>
+            <input type="text" name="resimway" value="//img[@@class='p-card-img']" placeholder="Ürün Resim Xpathini giriniz" class="form-control">
+        </div>
+        <div class="form-group col-3">
+            <label>excel isim</label>
+            <input type="text" name="exceladi" placeholder="Excel İsim Giriniz" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-success">Tara ve excele aktar</button>
+    </form>
+
+    <a href="/Scraper/Exceller" class="btn btn-secondary">Exceller</a>
+    <br />
+    <br />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Başlık</th>
+                <th scope="col">Fiyat</th>
+                <th scope="col">Resim</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Başlık</td>
+                <td>Fiyat</td>
+                <td>Resim</td>
+            </tr>
+        </tbody>
+    </table>
+}
+else
+{
+
+
+
+    <form>
+        <div class="form-group col-3">
+            <label>site url</label>
+            <input type="text" name="url" class="form-control">
+        </div>
+        <div class="form-group col-3">
+            <label>Başlık xpath</label>
+            <input type="text" name="Titleway" class="form-control">
+        </div>
+        <div class="form-group col-3">
+            <label>fiyat xpath</label>
+            <input type="text" name="fiyatway" class="form-control">
+        </div>
+        <div class="form-group col-3">
+            <label>Resim xpath</label>
+            <input type="text" name="resimway" value="//img[@@class='p-card-img']" placeholder="Ürün Resim Xpathini giriniz" class="form-control">
+        </div>
+        <div class="form-group col-3">
+            <label>excel isim</label>
+            <input type="text" name="exceladi" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-success">Tara ve excele aktar</button>
+    </form>
+    <a href="/Scraper/Exceller" class="btn btn-secondary">Exceller</a>
+
+
+
+
+    <br />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Başlık</th>
+                <th scope="col">Fiyat</th>
+                <th scope="col">Resim</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model)
+            {
+                <tr>
+                    <th scope="row">1</th>
+                    <td>@i.Title</td>
+                    <td>@i.Fiyat</td>
+                    <td>@i.Img.Substring(0,10)</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+}
